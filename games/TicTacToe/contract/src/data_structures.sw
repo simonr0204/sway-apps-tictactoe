@@ -1,10 +1,9 @@
 library data_structures;
 
-use std::{address::Address, option::Option};
+use std::{address::Address};
 
-// A game is defined by the Players and the winner.
-pub struct Game {
-    PlayerOne: Address,
-    PlayerTwo: Address,
-    winner: Option<Address>,
+pub enum State {
+    InProgress: (),
+    Drawn: (),
+    Won: Address,
 }
