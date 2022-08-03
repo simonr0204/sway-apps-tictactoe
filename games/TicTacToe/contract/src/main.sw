@@ -136,7 +136,7 @@ impl TicTacToe for Contract {
 #[storage(read)]fn update_state() -> State {
 
     let winner = check_for_winner(storage.board);
-    if !check_for_winner(storage.board).is_none() {
+    if check_for_winner(storage.board).is_some() {
         return State::Won(winner.unwrap());
     }
 
@@ -171,7 +171,7 @@ fn check_for_winner(board: [[u8; 3]; 3]) -> Option<Address> {
     let mut i = 0u8;
     while i < 3u8 {
         winner = line_is_win(board[i]);
-        if !winner.is_none() {
+        if winner.is_some() {
             break;
         }
     }
@@ -181,7 +181,7 @@ fn check_for_winner(board: [[u8; 3]; 3]) -> Option<Address> {
         let mut j = 0u8;
         while j < 3u8 {
             winner = line_is_win([board[0][j], board[1][j], board[2][j]]);
-            if !winner.is_none() {
+            if winner.is_some() {
                 break;
             }
         }
